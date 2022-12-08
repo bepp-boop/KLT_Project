@@ -21,16 +21,16 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
+        val missionDataset = MissionDatasource().loadMissions()
+        val recyclerView = binding.recycler
+        recyclerView.adapter = MissionItemAdapter(this, missionDataset)
+        recyclerView.setHasFixedSize(true)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val missionDataset = MissionDatasource().loadMissions()
-        val recyclerView = binding.recycler
-        recyclerView.adapter = MissionItemAdapter(this, missionDataset)
-        recyclerView.setHasFixedSize(true)
+
     }
 
     override fun onDestroyView() {

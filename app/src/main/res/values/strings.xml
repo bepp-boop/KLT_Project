@@ -10,7 +10,9 @@
     <string name="menu_home">Missions</string>
     <string name="menu_gallery">New Job</string>
     <string name="menu_slideshow">Reports</string>
-    <string name="to">To: %s</string>
-    <string name="from">From: %s</string>
+    <string name="to">To: </string>
+    <string name="from">From: </string>
     <string name="mission">Mission</string>
+    <string name="load_at">Load at:</string>
+    <string name="unload_at">Unload at:</string>
 </resources>
