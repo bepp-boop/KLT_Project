@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.klt_project.ui.gallery.GalleryFragment"
+        android:name="com.example.klt_project.ui.aboutUs.AboutUsFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_about_us" />
 
     <fragment
         android:id="@+id/nav_slideshow"
