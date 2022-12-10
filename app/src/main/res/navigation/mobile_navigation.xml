@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_about_us"
         android:name="com.example.klt_project.ui.aboutUs.AboutUsFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_about_us"
         tools:layout="@layout/fragment_about_us" />
 
     <fragment
