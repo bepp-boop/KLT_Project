@@ -13,7 +13,6 @@ class MissionItemAdapter(
 ) : RecyclerView.Adapter<MissionItemAdapter.MissionItemViewHolder>(){
 
     class MissionItemViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        val missionName: TextView = view.findViewById(R.id.mission)
         val from: TextView = view.findViewById(R.id.from)
         val to: TextView = view.findViewById(R.id.to)
     }
@@ -26,7 +25,6 @@ class MissionItemAdapter(
 
     override fun onBindViewHolder(holder: MissionItemViewHolder, position: Int) {
         val item = dataset[position]
-        holder.missionName.text = context.resources.getString(item.stringMissionResourceId)
         holder.from.text = context.resources.getString(item.stringFromResourceId)
         holder.to.text = context.resources.getString(item.stringToResourceId)
 
