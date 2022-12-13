@@ -21,4 +21,13 @@
     <string name="expected_unload_time">13:00</string>
     <string name="klt_history">Kjellssons Logistik och Transport är ett familjeägt lager- och logistikföretag med Kristianstad som bas. Verksamheten startade i liten skala 1998 av Steve Kjellson med två lastbilar och en lagerbyggnad på 3 500 m2.. Sedan dess har företaget, numera med sonen Daniel och brorsonen Pelle vid rodret, utvecklat verksamheten på flera fronter och erbjuder idag såväl torr-, kyl- och fryslager som transporttjänster och lokaluthyrning till företag på totalt 36 000 m2 på Näsby industriområde i Kristianstad.</string>
     <string name="klt_history_title">Historia</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>
