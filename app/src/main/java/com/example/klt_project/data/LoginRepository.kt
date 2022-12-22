@@ -10,8 +10,7 @@ import com.example.klt_project.data.model.LoggedInUser
 class LoginRepository(val dataSource: LoginDataSource) {
 
     // in-memory cache of the loggedInUser object
-    var user: LoggedInUser? = null
-        private set
+    private var user: LoggedInUser? = null
 
     val isLoggedIn: Boolean
         get() = user != null
