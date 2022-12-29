@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlin.collections.set
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var uid:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -65,6 +67,7 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun getUserData(user: String) {
         val userData = hashMapOf<String, String>()
+        var missions: ArrayList<Int>
         myRef.child(user).addValueEventListener(object : ValueEventListener{
             @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -75,6 +78,17 @@ class MainActivity : AppCompatActivity() {
                 userData["firstName"] = snapshot.child("firstName").value as String
                 userData["lastName"] = snapshot.child("lastName").value as String
                 userData["email"] = snapshot.child("email").value as String
+                missions = snapshot.child("missions_id").value as ArrayList<Int>
+                DataList.missionsID = missions
+
+//                val homeFragment = HomeFragment()
+//                val bundle = Bundle()
+//                //bundle.putIntegerArrayList("missions", missions)
+//                bundle.putString("notMission","Something")
+//                //set MyFragment Arguments
+//                homeFragment.arguments = bundle
+
+
 
                 Log.i("firebase", userData["firstName"].toString())
 
@@ -84,7 +98,8 @@ class MainActivity : AppCompatActivity() {
                 val emailShow: TextView = headView.findViewById(R.id.user_email)
 
                 name.text = "${userData["firstName"]} ${userData["lastName"]}"
-                emailShow.text = userData["email"]
+                //emailShow.text = userData["email"]
+                emailShow.text = missions.toString()
 //                name.text = "$firstName $lastName"
 //                emailShow.text = email
 
@@ -135,4 +150,9 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+}
+
+object DataList{
+    var missionsID: ArrayList<Int> = arrayListOf()
+
 }

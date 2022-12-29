@@ -29,7 +29,10 @@ class RegisterActivity : AppCompatActivity() {
             val password = binding.password.text.toString()
             val firstName = binding.firstName.text.toString()
             val lastName = binding.lastName.text.toString()
-            val user = User(firstName, lastName, email, password)
+            val missions_id: MutableList<Int> = ArrayList()
+            //Add a index here so the array is not null
+            missions_id.add(10)
+            val user = User(firstName, lastName, email, password,missions_id)
             auth = Firebase.auth
             FirebaseAuth.getInstance()
             this.auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
