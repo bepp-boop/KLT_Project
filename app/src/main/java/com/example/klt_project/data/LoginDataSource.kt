@@ -12,11 +12,14 @@ import java.io.IOException
 class LoginDataSource {
     private lateinit var auth: FirebaseAuth
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
+    fun login(username: String, password: String): Result<LoggedInUser>? {
         return try {
             auth = Firebase.auth
             FirebaseAuth.getInstance()
-            val user = LoggedInUser(auth.signInWithEmailAndPassword(username, password).toString(),username)
+            val user = LoggedInUser(
+                auth.signInWithEmailAndPassword(username, password).toString(),
+                username
+            )
             Result.Success(user)
         } catch (e: Throwable) {
             Result.Error(IOException("Error logging in", e))

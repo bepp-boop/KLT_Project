@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,18 +23,21 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlin.collections.set
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private var firstName: String? = null
+    private var lastName:String? = null
+    private var email:String? = null
+    private var missions: ArrayList<Int>? = null
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val database = Firebase.database("https://klt-prototype-default-rtdb.europe-west1.firebasedatabase.app/")
     private val myRef = database.getReference("Users")
-    private lateinit var auth:FirebaseAuth
-    private lateinit var uid:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.appBarMain.toolbar)
@@ -41,13 +45,11 @@ class MainActivity : AppCompatActivity() {
         binding.appBarMain.fab.setOnClickListener {
             //this will be used to create a new mission. Ex: picking up empty pallets.
         }
-
-        auth = FirebaseAuth.getInstance()
-        uid = auth.currentUser?.uid.toString()
+        val uid:String = this.auth.currentUser?.uid.toString()
+        Log.d("firebase", uid)
         if(uid.isNotEmpty()){
             getUserData(uid)
         }
-
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -64,22 +66,27 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     @SuppressLint("SetTextI18n")
     private fun getUserData(user: String) {
-        val userData = hashMapOf<String, String>()
-        var missions: ArrayList<Int>
+        val userData = hashMapOf<String?, String?>()
+        Log.d("firebase", "inside getUserData")
+        Log.d("firebase", "user: $user")
+
         myRef.child(user).addValueEventListener(object : ValueEventListener{
             @SuppressLint("SetTextI18n")
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 userData.clear()
-//                val firstName = snapshot.child("firstName").value as String
-//                val lastName = snapshot.child("lastName").value as String
-//                val email = snapshot.child("email").value as String
-                userData["firstName"] = snapshot.child("firstName").value as String
-                userData["lastName"] = snapshot.child("lastName").value as String
-                userData["email"] = snapshot.child("email").value as String
-                missions = snapshot.child("missions_id").value as ArrayList<Int>
-                DataList.missionsID = missions
+                Log.d("firebase", "inside onDataChange")
+//                firstName = snapshot.child("firstName").value as? String
+//                lastName = snapshot.child("lastName").value as? String
+//                email = snapshot.child("email").value as? String
+                userData["firstName"] = snapshot.child("firstName").value as? String
+                userData["lastName"] = snapshot.child("lastName").value as? String
+                userData["email"] = snapshot.child("email").value as? String
+                missions = snapshot.child("missions_id").value as? ArrayList<Int>
+                //DataList.missionsID = (missions)!!
 
 //                val homeFragment = HomeFragment()
 //                val bundle = Bundle()
@@ -96,12 +103,17 @@ class MainActivity : AppCompatActivity() {
                 val headView: View = navView.getHeaderView(0)
                 val name: TextView = headView.findViewById(R.id.logged_user)
                 val emailShow: TextView = headView.findViewById(R.id.user_email)
-
+                val logOut: Button = headView.findViewById(R.id.log_out)
+                logOut.setOnClickListener {
+                    val auth:FirebaseAuth = FirebaseAuth.getInstance()
+                    auth.signOut()
+                    finish()
+                }
                 name.text = "${userData["firstName"]} ${userData["lastName"]}"
-                //emailShow.text = userData["email"]
-                emailShow.text = missions.toString()
-//                name.text = "$firstName $lastName"
-//                emailShow.text = email
+                emailShow.text = userData["email"]
+                //emailShow.text = missions.toString()
+                //name.text = "$firstName $lastName"
+                //emailShow.text = email
 
             }
 
@@ -130,20 +142,24 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        getUserData(uid)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        getUserData(uid)
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         //Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
+    }
+
+    override fun onEnterAnimationComplete() {
+        super.onEnterAnimationComplete()
+        val uid:String = auth.currentUser?.uid.toString()
+        Log.d("firebase", "onAnimation: $uid")
+        if(uid.isNotEmpty()){
+            getUserData(uid)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        auth.signOut()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -154,5 +170,4 @@ class MainActivity : AppCompatActivity() {
 
 object DataList{
     var missionsID: ArrayList<Int> = arrayListOf()
-
 }

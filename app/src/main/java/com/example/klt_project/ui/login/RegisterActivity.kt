@@ -30,7 +30,7 @@ class RegisterActivity : AppCompatActivity() {
             val password = binding.password.text.toString()
             val firstName = binding.firstName.text.toString()
             val lastName = binding.lastName.text.toString()
-            val missions_id: MutableList<Int> = ArrayList()
+            val missionsId: MutableList<Int> = ArrayList()
 
             if (email.isEmpty()){
                 binding.username.error = "Email is required"
@@ -63,8 +63,8 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             //Add a index here so the array is not null
-            missions_id.add(10)
-            val user = User(firstName, lastName, email, password,missions_id)
+            missionsId.add(10)
+            val user = User(firstName, lastName, email, password,missionsId)
             auth = Firebase.auth
             FirebaseAuth.getInstance()
             this.auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
