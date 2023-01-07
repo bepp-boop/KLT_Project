@@ -3,6 +3,7 @@
 package com.example.klt_project.ui.login
 
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.klt_project.data.User
@@ -30,6 +31,37 @@ class RegisterActivity : AppCompatActivity() {
             val firstName = binding.firstName.text.toString()
             val lastName = binding.lastName.text.toString()
             val missions_id: MutableList<Int> = ArrayList()
+
+            if (email.isEmpty()){
+                binding.username.error = "Email is required"
+                binding.username.requestFocus()
+                return@setOnClickListener
+            }
+            if (password.isEmpty()){
+                binding.password.error = "Password is required"
+                binding.password.requestFocus()
+                return@setOnClickListener
+            }
+            if (firstName.isEmpty()){
+                binding.firstName.error = "First name is required"
+                binding.firstName.requestFocus()
+                return@setOnClickListener
+            }
+            if (lastName.isEmpty()){
+                binding.lastName.error = "Last name is required"
+                binding.lastName.requestFocus()
+                return@setOnClickListener
+            }
+            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                binding.username.error = "Provide valid Email"
+                binding.username.requestFocus()
+                return@setOnClickListener
+            }
+            if(password.length < 6){
+                binding.password.error = "Min password length should be 6 character"
+                binding.password.requestFocus()
+                return@setOnClickListener
+            }
             //Add a index here so the array is not null
             missions_id.add(10)
             val user = User(firstName, lastName, email, password,missions_id)
