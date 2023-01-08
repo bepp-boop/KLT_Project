@@ -35,7 +35,6 @@
     <string name="first_name">First Name</string>
     <string name="log_out">Log out</string>
     <string name="first_mission">First mission</string>
-    <string name="title_activity_missions">MissionsActivity</string>
-    <string name="tab_text_1">Mission</string>
-    <string name="tab_text_2">Schedule</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

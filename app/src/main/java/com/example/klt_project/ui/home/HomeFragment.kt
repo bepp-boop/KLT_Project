@@ -1,12 +1,10 @@
 package com.example.klt_project.ui.home
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.klt_project.DataList
 import com.example.klt_project.databinding.FragmentHomeBinding
@@ -62,7 +60,6 @@ class HomeFragment : Fragment() {
             MissionID.add(DataList.missionsID[i])
         }
         Log.d("important", MissionID.toString())
-
     }
 
     private fun setMissionID(missionID: String){

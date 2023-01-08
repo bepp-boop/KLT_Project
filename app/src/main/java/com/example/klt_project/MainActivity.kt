@@ -15,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.klt_project.DataList.missionsID
 import com.example.klt_project.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -79,17 +80,8 @@ class MainActivity : AppCompatActivity() {
                 userData["firstName"] = snapshot.child("firstName").value as? String
                 userData["lastName"] = snapshot.child("lastName").value as? String
                 userData["email"] = snapshot.child("email").value as? String
-                missions = snapshot.child("missions_id").value as? ArrayList<Int>
-                //DataList.missionsID = (missions)!!
-
-//                val homeFragment = HomeFragment()
-//                val bundle = Bundle()
-//                //bundle.putIntegerArrayList("missions", missions)
-//                bundle.putString("notMission","Something")
-//                //set MyFragment Arguments
-//                homeFragment.arguments = bundle
-
-
+                //mission = (snapshot.child("mission_id").value as? String).toString()
+                missionsID = snapshot.child("missions_id").value as ArrayList<Int>
 
                 Log.i("firebase", userData["firstName"].toString())
 
