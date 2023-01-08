@@ -16,7 +16,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
 
     lateinit var MissionID:ArrayList<Int>
-
+    var string = DataList.missionsID.toString()
+    lateinit var myMissionID: String
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -30,8 +31,9 @@ class HomeFragment : Fragment() {
 //        }
 //        else Log.d("Something important","Damn")
         getMissionID()
-        val string = DataList.missionsID.toString()
-        Log.d("Something important", string)
+
+        string = setMissionID(DataList.missionsID.toString()).toString()
+        //val string = DataList.missionsID.toString()
 
 
     }
@@ -61,5 +63,9 @@ class HomeFragment : Fragment() {
         }
         Log.d("important", MissionID.toString())
 
+    }
+
+    private fun setMissionID(missionID: String){
+        this.myMissionID = missionID
     }
 }
