@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".ui.login.LoginActivity">
+
+
+    <EditText
+        android:id="@+id/consignor"
+        android:layout_width="720dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints="Consignor"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toStartOf="@+id/package_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/package_type"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:autofillHints="Consignor"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product_type" />
+
+    <EditText
+        android:id="@+id/special_instruction"
+        android:layout_width="720dp"
+        android:layout_height="90dp"
+        android:autofillHints="Consignor"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.263"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/place_of_destination"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <EditText
+        android:id="@+id/date_of_issues"
+        android:layout_width="720dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="24dp"
+        android:autofillHints="Consignor"
+        android:inputType="date"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toStartOf="@+id/missionID"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/consignor" />
+
+    <EditText
+        android:id="@+id/gross_weight"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:autofillHints="Consignor"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/missionID" />
+
+    <EditText
+        android:id="@+id/place_of_dispatch"
+        android:layout_width="720dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="24dp"
+        android:autofillHints="Consignor"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toStartOf="@+id/product_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/consignees" />
+
+    <EditText
+        android:id="@+id/product_type"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:autofillHints="Consignor"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gross_weight" />
+
+    <EditText
+        android:id="@+id/place_of_destination"
+        android:layout_width="720dp"
+        android:layout_height="90dp"
+        android:autofillHints="Consignor"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toStartOf="@+id/package_type"
+        app:layout_constraintHorizontal_bias="0.632"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/place_of_dispatch" />
+
+    <EditText
+        android:id="@+id/package_number"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="4dp"
+        android:autofillHints="Consignor"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/missionID"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:autofillHints="Consignor"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/package_number" />
+
+    <EditText
+        android:id="@+id/consignees"
+        android:layout_width="720dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="24dp"
+        android:autofillHints="Consignees"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toStartOf="@+id/gross_weight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_of_issues" />
+
+    <Button
+        android:id="@+id/create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginBottom="16dp"
+        android:enabled="true"
+        android:text="@string/action_create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
