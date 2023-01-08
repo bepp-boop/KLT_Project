@@ -3,13 +3,13 @@ package com.example.klt_project.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.klt_project.DataList
 
 
 class HomeViewModel : ViewModel() {
-    private var missionsList: List<String>? = null
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = DataList.missionsID.toString()
     }
     val text: LiveData<String> = _text
 }

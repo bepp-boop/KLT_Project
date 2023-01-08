@@ -1,16 +1,19 @@
 package com.example.klt_project.ui.home.ui
 
-import android.content.Intent
-import android.net.Uri
+import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.downloader.Error
+import com.downloader.OnDownloadListener
+import com.downloader.PRDownloader
 import com.example.klt_project.databinding.FragmentPdfBinding
+import com.example.klt_project.utils.FileUtils
 import com.github.barteksc.pdfviewer.PDFView
-import kotlinx.android.synthetic.main.fragment_pdf.*
+import java.io.File
 
 class PdfFragment:Fragment() {
     private var _binding: FragmentPdfBinding? = null
@@ -18,7 +21,12 @@ class PdfFragment:Fragment() {
     private lateinit var pdfView: PDFView
 
     companion object {
-        const val PDF_SELECTION_CODE = 99
+        private const val PDF_SELECTION_CODE = 99
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
     }
 
     override fun onCreateView(
@@ -28,37 +36,73 @@ class PdfFragment:Fragment() {
     ): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentPdfBinding.inflate(inflater, container, false)
+        //progressBar.visibility = View.VISIBLE
+
         return binding.root
     }
 
-    private fun selectPdfFromStorage() {
-        val browseStorage = Intent(Intent.ACTION_GET_CONTENT)
-        browseStorage.type = "application/pdf"
-        browseStorage.addCategory(Intent.CATEGORY_OPENABLE)
-        startActivityForResult(
-            Intent.createChooser(browseStorage, "Select PDF"), PDF_SELECTION_CODE
+    override fun onResume() {
+        super.onResume()
+        pdfView = binding.pdfView
+        val fileName = "myFile.pdf"
+        downloadPdfFromInternet(
+            FileUtils.getPdfUrl(),
+            FileUtils.getRootDirPath(this),
+            fileName
         )
     }
 
-    private fun showPdfFromUri(uri: Uri?) {
-        pdfView.fromUri(uri)
+//    override fun setMenuVisibility(menuVisible: Boolean) {
+//        super.setMenuVisibility(menuVisible)
+//        pdfView = binding.pdfView
+//        val fileName = "myFile.pdf"
+//        downloadPdfFromInternet(
+//            FileUtils.getPdfUrl(),
+//            FileUtils.getRootDirPath(this),
+//            fileName
+//        )
+//    }
+
+    private fun showPdfFromFile(file: File) {
+        pdfView.fromFile(file)
+            .password(null)
             .defaultPage(0)
-            .spacing(10)
+            .enableSwipe(false)
+            .swipeHorizontal(false)
+            .enableDoubletap(true)
+            .onPageError { page, _ ->
+                Toast.makeText(
+                    context,
+                    "Error at page: $page", Toast.LENGTH_LONG
+                ).show()
+            }
             .load()
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PDF_SELECTION_CODE && resultCode == AppCompatActivity.RESULT_OK && data != null) {
-            val selectedPdfFromStorage = data.data
-            showPdfFromUri(selectedPdfFromStorage)
-        }
-    }
+    private fun downloadPdfFromInternet(url: String, dirPath: String, fileName: String) {
+        PRDownloader.download(
+            url,
+            dirPath,
+            fileName
+        ).build()
+            .start(object : OnDownloadListener {
+                override fun onDownloadComplete() {
+                    //Toast.makeText(context, "downloadComplete", Toast.LENGTH_LONG)
+                        //.show()
+                    val downloadedFile = File(dirPath, fileName)
+                    //progressBar.visibility = View.GONE
+                    showPdfFromFile(downloadedFile)
+                }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        selectPdfFromStorage()
-        super.onViewCreated(view, savedInstanceState)
+                override fun onError(error: Error?) {
+                    Toast.makeText(
+                        context,
+                        "Error in downloading file : $error",
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
+                }
+            })
     }
 }
 

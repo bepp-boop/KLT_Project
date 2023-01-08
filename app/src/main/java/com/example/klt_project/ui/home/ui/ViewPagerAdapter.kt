@@ -20,7 +20,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle): 
             }
             else->{
                 Fragment()
-            }
+           }
         }
     }
 }
