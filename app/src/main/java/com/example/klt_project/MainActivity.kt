@@ -1,6 +1,7 @@
 package com.example.klt_project
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -16,6 +17,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.klt_project.databinding.ActivityMainBinding
+import com.example.klt_project.ui.home.MissionNew
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -40,6 +42,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarMain.toolbar)
 
         binding.appBarMain.fab.setOnClickListener {
+            val intent = Intent(this, MissionNew::class.java)
+            startActivity(intent)
             //this will be used to create a new mission. Ex: picking up empty pallets.
         }
         val uid:String = this.auth.currentUser?.uid.toString()
