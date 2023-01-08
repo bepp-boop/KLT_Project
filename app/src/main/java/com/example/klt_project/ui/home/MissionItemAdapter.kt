@@ -1,7 +1,7 @@
 package com.example.klt_project.ui.home
 
 import android.content.Intent
-import android.graphics.pdf.PdfDocument
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,11 +42,11 @@ class MissionItemAdapter(
         holder.missionLayout.setOnClickListener{
             val intent = Intent(this.context.context, MissionActivity::class.java)
             val context = context.activity
-            intent.putExtra(MISSION_MESSAGE,holder.itemView.resources.getString(item.stringMissionResourceId))
-            intent.putExtra(FROM_MESSAGE,holder.itemView.resources.getString(item.stringFromResourceId))
-            intent.putExtra(TO_MESSAGE,holder.itemView.resources.getString(item.stringToResourceId))
-            intent.putExtra(LOAD_MESSAGE,holder.itemView.resources.getString(item.stringLoadResourceId))
-            intent.putExtra(UNLOAD_MESSAGE,holder.itemView.resources.getString(item.stringUnloadResourceId))
+//            intent.putExtra(MISSION_MESSAGE,holder.itemView.resources.getString(item.stringMissionResourceId))
+//            intent.putExtra(FROM_MESSAGE,holder.itemView.resources.getString(item.stringFromResourceId))
+//            intent.putExtra(TO_MESSAGE,holder.itemView.resources.getString(item.stringToResourceId))
+//            intent.putExtra(LOAD_MESSAGE,holder.itemView.resources.getString(item.stringLoadResourceId))
+//            intent.putExtra(UNLOAD_MESSAGE,holder.itemView.resources.getString(item.stringUnloadResourceId))
             if (context != null) {
                 context.startActivity(intent)
             }

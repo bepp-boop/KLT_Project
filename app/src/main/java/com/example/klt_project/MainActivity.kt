@@ -27,9 +27,6 @@ import kotlin.collections.set
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private var firstName: String? = null
-    private var lastName:String? = null
-    private var email:String? = null
     private var missions: ArrayList<Int>? = null
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val database = Firebase.database("https://klt-prototype-default-rtdb.europe-west1.firebasedatabase.app/")
@@ -79,9 +76,6 @@ class MainActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 userData.clear()
                 Log.d("firebase", "inside onDataChange")
-//                firstName = snapshot.child("firstName").value as? String
-//                lastName = snapshot.child("lastName").value as? String
-//                email = snapshot.child("email").value as? String
                 userData["firstName"] = snapshot.child("firstName").value as? String
                 userData["lastName"] = snapshot.child("lastName").value as? String
                 userData["email"] = snapshot.child("email").value as? String

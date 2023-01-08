@@ -20,7 +20,11 @@ class LoginDataSource {
                 auth.signInWithEmailAndPassword(username, password).toString(),
                 username
             )
-            Result.Success(user)
+            if (auth.currentUser != null){
+                Result.Success(user)
+            }else{
+                Result.Error(IOException("Error logging in"))
+            }
         } catch (e: Throwable) {
             Result.Error(IOException("Error logging in", e))
         }
