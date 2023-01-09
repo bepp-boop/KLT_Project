@@ -41,7 +41,7 @@
 
         <Button
             android:id="@+id/log_out"
-            android:layout_width="wrap_content"
+            android:layout_width="2dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/log_out" />

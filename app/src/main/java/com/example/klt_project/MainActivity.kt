@@ -18,7 +18,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.klt_project.DataList.missionsID
 import com.example.klt_project.databinding.ActivityMainBinding
-import com.example.klt_project.ui.home.MissionNew
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -43,8 +42,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarMain.toolbar)
 
         binding.appBarMain.fab.setOnClickListener {
-            val intent = Intent(this, MissionNew::class.java)
-            startActivity(intent)
+            //val intent = Intent(this, MissionNew::class.java)
+            //startActivity(intent)
             //this will be used to create a new mission. Ex: picking up empty pallets.
         }
         val uid:String = this.auth.currentUser?.uid.toString()
@@ -68,6 +67,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        if(supportFragmentManager.backStackEntryCount > 0){
+            supportFragmentManager.popBackStackImmediate()
+        }else {
+            super.onBackPressed()
+        }
+    }
+
 
     @SuppressLint("SetTextI18n")
     private fun getUserData(user: String) {
@@ -85,7 +92,7 @@ class MainActivity : AppCompatActivity() {
                 userData["lastName"] = snapshot.child("lastName").value as? String
                 userData["email"] = snapshot.child("email").value as? String
                 //mission = (snapshot.child("mission_id").value as? String).toString()
-                missionsID = snapshot.child("missions_id").value as ArrayList<Int>
+                missionsID = snapshot.child("missions_id").value as? ArrayList<Int>
 
                 Log.i("firebase", userData["firstName"].toString())
 
@@ -159,5 +166,5 @@ class MainActivity : AppCompatActivity() {
 }
 
 object DataList{
-    var missionsID: ArrayList<Int> = arrayListOf()
+    var missionsID: ArrayList<Int>? = arrayListOf()
 }

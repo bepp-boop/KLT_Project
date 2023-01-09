@@ -29,8 +29,8 @@ class LoginDataSource {
             if (auth.currentUser != null) {
                 myRef.child(auth.uid.toString()).get().addOnSuccessListener {
                     if(it.exists()) {
-                        DataList.missionsID.clear()
-                        DataList.missionsID = it.child("missions_id").value as ArrayList<Int>
+                        DataList.missionsID!!.clear()
+                        DataList.missionsID = it.child("missions_id").value as? ArrayList<Int>
                         Log.d("mission", "from loginDataSource: ${DataList.missionsID}")
                     }
                 }
