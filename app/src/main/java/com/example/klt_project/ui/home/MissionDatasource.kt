@@ -56,7 +56,12 @@ class MissionDatasource {
                 R.string.expected_unload_time
             ),
 
-            //Missions(R.string.mission, R.string.city_to, R.string.city_from,R.string.expected_unload_time,R.string.expected_load_time)
+            Missions(
+                R.string.mission,
+                R.string.city_to,
+                R.string.city_from,
+                R.string.expected_unload_time,
+                R.string.expected_load_time)
         )
 
     }

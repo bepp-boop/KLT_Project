@@ -39,7 +39,23 @@
     <string name="tab_text_1">Mission</string>
     <string name="tab_text_2">Schedule</string>
     <string name="action_create">Create</string>
-    <string name="start_loading">Start Loading</string>
+    <string-array name="loading">
+        <item name="start_loading">Start Loading!</item>
+        <item name="loading_complete">Loading Complete!</item>
+    </string-array>
+    <string-array name="driving">
+        <item name="start_Driving">Start Driving!</item>
+        <item name="stop_Driving">Stop Driving!</item>
+    </string-array>
+    <string-array name="unloading">
+        <item name="start_unloading">Start Unloading!</item>
+        <item name="stop_Driving">Unloading Complete!</item>
+    </string-array>
+    <string-array name="wash">
+        <item name="start_unloading">Washing!</item>
+        <item name="stop_Driving">Washing Complete!</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

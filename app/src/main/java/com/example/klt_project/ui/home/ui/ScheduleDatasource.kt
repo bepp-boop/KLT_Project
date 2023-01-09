@@ -1,27 +1,23 @@
 package com.example.klt_project.ui.home.ui
 
+import android.annotation.SuppressLint
 import com.example.klt_project.R
 
 class ScheduleDatasource {
+    @SuppressLint("ResourceType")
     fun loadSchedule(): List<Schedule> {
         return listOf(
             Schedule(
-                R.string.start_loading
+                R.array.loading
             ),
             Schedule(
-                R.string.start_loading
+                R.array.driving
             ),
             Schedule(
-                R.string.start_loading
+                R.array.unloading
             ),
             Schedule(
-                R.string.start_loading
-            ),
-            Schedule(
-                R.string.start_loading
-            ),
-            Schedule(
-                R.string.start_loading
+                R.array.wash
             ),
         )
 

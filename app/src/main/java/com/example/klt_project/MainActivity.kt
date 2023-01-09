@@ -144,4 +144,5 @@ class MainActivity : AppCompatActivity() {
 object DataList{
     var missionsID: ArrayList<Int>? = arrayListOf()
     var userMission = hashMapOf<String?, String?>()
+    var timeElapsed = hashMapOf<String, Array<Int>?>()
 }
