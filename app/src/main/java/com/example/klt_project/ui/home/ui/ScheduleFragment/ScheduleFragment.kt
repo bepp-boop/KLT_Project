@@ -1,4 +1,4 @@
-package com.example.klt_project.ui.home.ui
+package com.example.klt_project.ui.home.ui.ScheduleFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ class ScheduleFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentScheduleBinding.inflate(inflater, container, false)
         val scheduleDataset = ScheduleDatasource().loadSchedule()
         val recyclerView = binding.scheduleRecycler

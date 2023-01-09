@@ -1,7 +1,6 @@
-package com.example.klt_project.ui.home.ui
+package com.example.klt_project.ui.home.ui.ScheduleFragment
 
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,13 +18,13 @@ class ScheduleItemAdapter(
         val scheduleLayout: LinearLayout = view.findViewById(R.id.schedule_layout)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleItemAdapter.ScheduleItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_interaction, parent, false)
-        return ScheduleItemAdapter.ScheduleItemViewHolder(adapterLayout)
+        return ScheduleItemViewHolder(adapterLayout)
     }
 
-    override fun onBindViewHolder(holder: ScheduleItemAdapter.ScheduleItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ScheduleItemViewHolder, position: Int) {
 
         val item = dataset[position]
         holder.scheduleLayout.setOnClickListener{
