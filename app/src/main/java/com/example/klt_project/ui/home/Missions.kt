@@ -8,5 +8,6 @@ data class Missions(
     @StringRes val stringToResourceId: Int,
     @StringRes val stringLoadResourceId: Int,
     @StringRes val stringUnloadResourceId:Int
+
     ) {
 }

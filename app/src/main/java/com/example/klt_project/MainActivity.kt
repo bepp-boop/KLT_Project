@@ -30,7 +30,6 @@ import kotlin.collections.set
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private var missions: ArrayList<Int>? = null
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val database = Firebase.database("https://klt-prototype-default-rtdb.europe-west1.firebasedatabase.app/")
     private val myRef = database.getReference("Users")
@@ -85,17 +84,16 @@ class MainActivity : AppCompatActivity() {
 
         myRef.child(user).addValueEventListener(object : ValueEventListener{
             @SuppressLint("SetTextI18n")
-
+            @Suppress("UNCHECKED_CAST")
             override fun onDataChange(snapshot: DataSnapshot) {
                 userData.clear()
-                Log.d("firebase", "inside onDataChange")
+                Log.d("mission", "inside onDataChange")
                 userData["firstName"] = snapshot.child("firstName").value as? String
                 userData["lastName"] = snapshot.child("lastName").value as? String
                 userData["email"] = snapshot.child("email").value as? String
-                //mission = (snapshot.child("mission_id").value as? String).toString()
                 missionsID = snapshot.child("missions_id").value as? ArrayList<Int>
 
-                Log.i("firebase", userData["firstName"].toString())
+                Log.d("mission", "from Main: ${missionsID}")
 
                 val navView: NavigationView = binding.navView
                 val headView: View = navView.getHeaderView(0)
@@ -109,34 +107,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 name.text = "${userData["firstName"]} ${userData["lastName"]}"
                 emailShow.text = userData["email"]
-                //emailShow.text = missions.toString()
-                //name.text = "$firstName $lastName"
-                //emailShow.text = email
-
             }
-
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(applicationContext, "Network error", Toast.LENGTH_SHORT).show()
             }
         })
-
-//        myRef.child(user).get().addOnSuccessListener {
-//            if(it.exists()) {
-//                val firstName = it.child("firstName").value as String
-//                val lastName = it.child("lastName").value as String
-//                val email = it.child("email").value as String
-//
-//                Log.i("register", firstName)
-//
-//                val navView: NavigationView = binding.navView
-//                val headView: View = navView.getHeaderView(0)
-//                val name: TextView = headView.findViewById(R.id.logged_user)
-//                val emailShow: TextView = headView.findViewById(R.id.user_email)
-//                name.text = "$firstName $lastName"
-//                emailShow.text = email
-//
-//            }
-//        }
     }
 
 
@@ -156,8 +131,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         auth.signOut()
+        super.onDestroy()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -168,4 +143,5 @@ class MainActivity : AppCompatActivity() {
 
 object DataList{
     var missionsID: ArrayList<Int>? = arrayListOf()
+    var userMission = hashMapOf<String?, String?>()
 }

@@ -136,7 +136,12 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
     }
 
+    override fun onDestroy() {
+        auth.signOut()
+        super.onDestroy()
+    }
 }
+
 
 /**
  * Extension function to simplify setting an afterTextChanged action to EditText components.

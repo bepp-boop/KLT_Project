@@ -18,19 +18,15 @@ class ScheduleFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentScheduleBinding.inflate(inflater, container, false)
-        text = binding.schedule
-        text.text = "It works in onCreateView"
+        val scheduleDataset = ScheduleDatasource().loadSchedule()
+        val recyclerView = binding.scheduleRecycler
+        recyclerView.adapter = ScheduleItemAdapter(this, scheduleDataset)
+        recyclerView.setHasFixedSize(true)
         return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        text.text = " It works"
     }
 
     override fun setMenuVisibility(menuVisible: Boolean) {
         super.setMenuVisibility(menuVisible)
-        text.text = "It Works!!!!"
     }
 
 }

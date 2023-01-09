@@ -31,7 +31,7 @@ class MissionNew : AppCompatActivity() {
         val mAddressTo: EditText = binding.addressTo
         val mWoodPallets: EditText = binding.palletsWood
         val mPlasticPallets: EditText = binding.palletsPlastic
-        val missionID = Random.nextInt(0,100000).toString()
+        val missionID = Random.nextInt(0,100000)
         mDate.setText(LocalDate.now().toString())
 
         val create = binding.create
@@ -48,7 +48,7 @@ class MissionNew : AppCompatActivity() {
             FirebaseAuth.getInstance()
             auth.currentUser.let { it ->
                 it?.let { it1 ->
-                    database.getReference("Users").child(it1.uid).child("missions_id").child(missionID).setValue(mission).addOnSuccessListener {
+                    database.getReference("Users").child(it1.uid).child("missions_id").child(missionID.toString()).setValue(mission).addOnSuccessListener {
                         binding.date.text.clear()
                         binding.addressTo.text.clear()
                         binding.addressFrom.text.clear()
@@ -63,7 +63,7 @@ class MissionNew : AppCompatActivity() {
         }
     }
     data class Mission(
-        val ID: String? = null,
+        val ID: Int? = null,
         val date: String? = null,
         val addressFrom: String? = null,
         val addressTo: String? = null,
