@@ -28,5 +28,4 @@ class NoteFragment:Fragment(){
         return binding.root
     }
 
-
 }
