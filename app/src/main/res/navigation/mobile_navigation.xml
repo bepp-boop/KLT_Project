@@ -31,7 +31,7 @@
         android:id="@+id/welcomeFragment"
         android:name="com.example.klt_project.ui.home.WelcomeFragment"
         android:label="Welcome"
-        tools:layout="@layout/fragment_welcome" >
+        tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_nav_home"
             app:destination="@id/nav_home" />

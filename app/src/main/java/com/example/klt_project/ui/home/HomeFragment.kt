@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.klt_project.R
 import com.example.klt_project.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

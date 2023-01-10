@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if(supportFragmentManager.backStackEntryCount > 0){
-            supportFragmentManager.popBackStackImmediate()
+            supportFragmentManager.popBackStack()
         }else {
             super.onBackPressed()
         }
