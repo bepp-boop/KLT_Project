@@ -1,4 +1,4 @@
-package com.example.klt_project.ui.home.ui.ScheduleFragment
+package com.example.klt_project.ui.home.ui.scheduleFragment
 
 import android.annotation.SuppressLint
 import com.example.klt_project.R

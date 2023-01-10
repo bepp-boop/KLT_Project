@@ -3,23 +3,21 @@ package com.example.klt_project.ui.home.ui
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.klt_project.DataList
 import com.example.klt_project.R
+import com.example.klt_project.ui.home.ui.scheduleFragment.Schedule
+import com.example.klt_project.ui.home.ui.scheduleFragment.ScheduleFragment
 import kotlinx.android.synthetic.main.fragment_about_us.view.*
 import kotlinx.android.synthetic.main.fragment_schedule.*
 import kotlinx.android.synthetic.main.fragment_schedule.view.*
 import kotlinx.android.synthetic.main.list_interaction.view.*
-import java.text.SimpleDateFormat
 import java.util.*
-import java.util.logging.Handler
 
 class ScheduleItemAdapter(
     private val context: ScheduleFragment,
@@ -33,14 +31,14 @@ class ScheduleItemAdapter(
         val scheduleLayout: LinearLayout = view.findViewById(R.id.schedule_layout)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleItemAdapter.ScheduleItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleItemViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_interaction, parent, false)
-        return ScheduleItemAdapter.ScheduleItemViewHolder(adapterLayout)
+        return ScheduleItemViewHolder(adapterLayout)
     }
 
     @SuppressLint("ResourceType")
-    override fun onBindViewHolder(holder: ScheduleItemAdapter.ScheduleItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ScheduleItemViewHolder, position: Int) {
         lateinit var sentences:Array<String>
 
         var counter = 0

@@ -1,14 +1,14 @@
-package com.example.klt_project.ui.home.ui.ScheduleFragment
+package com.example.klt_project.ui.home.ui.scheduleFragment
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.klt_project.DataList
 import com.example.klt_project.databinding.FragmentScheduleBinding
+import com.example.klt_project.ui.home.ui.ScheduleItemAdapter
 
 class ScheduleFragment: Fragment() {
     private var _binding: FragmentScheduleBinding? = null
