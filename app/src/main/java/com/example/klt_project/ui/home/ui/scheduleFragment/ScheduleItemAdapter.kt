@@ -1,4 +1,4 @@
-package com.example.klt_project.ui.home.ui
+package com.example.klt_project.ui.home.ui.scheduleFragment
 
 
 import android.annotation.SuppressLint
@@ -11,8 +11,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.klt_project.DataList
 import com.example.klt_project.R
-import com.example.klt_project.ui.home.ui.scheduleFragment.Schedule
-import com.example.klt_project.ui.home.ui.scheduleFragment.ScheduleFragment
 import kotlinx.android.synthetic.main.fragment_about_us.view.*
 import kotlinx.android.synthetic.main.fragment_schedule.*
 import kotlinx.android.synthetic.main.fragment_schedule.view.*
@@ -23,9 +21,9 @@ class ScheduleItemAdapter(
     private val context: ScheduleFragment,
     private val dataset: List<Schedule>
 ) : RecyclerView.Adapter<ScheduleItemAdapter.ScheduleItemViewHolder>(){
-    val arrayHour:Array<Int> = arrayOf(0,0,0,0)
-    val arrayMinutes:Array<Int> = arrayOf(0,0,0,0)
-    val arraySeconds:Array<Int> = arrayOf(0,0,0,0)
+    private val arrayHour:Array<Int> = arrayOf(0,0,0,0)
+    private val arrayMinutes:Array<Int> = arrayOf(0,0,0,0)
+    private val arraySeconds:Array<Int> = arrayOf(0,0,0,0)
 
     class ScheduleItemViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val scheduleLayout: LinearLayout = view.findViewById(R.id.schedule_layout)

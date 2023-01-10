@@ -1,11 +1,11 @@
 package com.example.klt_project.ui.home
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.example.klt_project.R
 import com.example.klt_project.databinding.ActivityMissionNewBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -13,7 +13,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.time.LocalDate
-import kotlin.random.Random
 
 class MissionNew : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -31,7 +30,6 @@ class MissionNew : AppCompatActivity() {
         val mAddressTo: EditText = binding.addressTo
         val mWoodPallets: EditText = binding.palletsWood
         val mPlasticPallets: EditText = binding.palletsPlastic
-        val missionID = Random.nextInt(0,100000).toString()
         mDate.setText(LocalDate.now().toString())
 
         val create = binding.create
@@ -43,28 +41,32 @@ class MissionNew : AppCompatActivity() {
             val addressTo = mAddressTo.text.toString()
             val woodPallets = mWoodPallets.text.toString()
             val plasticPallets = mPlasticPallets.text.toString()
-            val mission = Mission(missionID, date, addressFrom, addressTo, woodPallets, plasticPallets)
+            val mission = Mission(date, addressFrom, addressTo, woodPallets, plasticPallets)
             auth = Firebase.auth
             FirebaseAuth.getInstance()
-            auth.currentUser.let { it ->
+            val ref = database.getReference("Mission")
+            val getKey = ref.push()
+            auth.currentUser.let {
                 it?.let { it1 ->
-                    database.getReference("Mission").child(missionID).setValue(mission).addOnSuccessListener {
+                    getKey.setValue(mission).addOnSuccessListener {
                         binding.addressTo.text.clear()
                         binding.addressFrom.text.clear()
                         binding.palletsWood.text.clear()
                         binding.palletsPlastic.text.clear()
                         Toast.makeText(this, "Mission created!", Toast.LENGTH_SHORT).show()
-                        database.getReference("Users").child(it1.uid).child("missions_id").setValue(missionID).addOnSuccessListener {
+                        database.getReference("Users").child(it1.uid).child("missions_id")
+                            .child(getKey.key.toString()).setValue("").addOnSuccessListener {
                         }
-                    }.addOnFailureListener{
+                    }.addOnFailureListener {
                         Toast.makeText(this, "Mission creation failed!", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
+
         }
     }
+
     data class Mission(
-        val ID: String? = null,
         val date: String? = null,
         val addressFrom: String? = null,
         val addressTo: String? = null,

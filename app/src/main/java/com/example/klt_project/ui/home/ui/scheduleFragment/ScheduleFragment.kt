@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.klt_project.DataList
 import com.example.klt_project.databinding.FragmentScheduleBinding
-import com.example.klt_project.ui.home.ui.ScheduleItemAdapter
 
 class ScheduleFragment: Fragment() {
     private var _binding: FragmentScheduleBinding? = null
