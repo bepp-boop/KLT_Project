@@ -142,4 +142,5 @@ object DataList{
     var missionsID: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0,0,0,0,0)
     var userMission = hashMapOf<Any, Any>()
     var timeElapsed = hashMapOf<String, Array<Int>?>()
+    var note:String = ""
 }

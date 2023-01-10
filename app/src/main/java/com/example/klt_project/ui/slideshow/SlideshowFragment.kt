@@ -1,5 +1,6 @@
 package com.example.klt_project.ui.slideshow
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ class SlideshowFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,8 +32,14 @@ class SlideshowFragment : Fragment() {
 
         val textView: TextView = binding.textSlideshow
         slideshowViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it.get("seconds")?.asList().toString()
+            textView.text = "${it["hour"]?.get(0).toString()}:${it["minutes"]?.get(0).toString()}:${it["seconds"]?.get(0).toString()}"
         }
+
+        val showNote:TextView = binding.showNote
+        slideshowViewModel.note.observe(viewLifecycleOwner){
+            showNote.text = it
+        }
+
         return root
     }
 
