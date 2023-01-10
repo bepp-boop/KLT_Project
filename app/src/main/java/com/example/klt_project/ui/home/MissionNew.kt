@@ -36,11 +36,37 @@ class MissionNew : AppCompatActivity() {
         setContentView(binding.root)
 
         create.setOnClickListener {
+
             val date = mDate.text.toString()
             val addressFrom = mAddressFrom.text.toString()
             val addressTo = mAddressTo.text.toString()
             val woodPallets = mWoodPallets.text.toString()
             val plasticPallets = mPlasticPallets.text.toString()
+            if (date.isEmpty()){
+                mDate.error = "Date is require"
+                mDate.requestFocus()
+                return@setOnClickListener
+            }
+            if (addressFrom.isEmpty()){
+                mAddressFrom.error = "Address is require"
+                mAddressFrom.requestFocus()
+                return@setOnClickListener
+            }
+            if (addressTo.isEmpty()){
+                mAddressTo.error = "Address is require"
+                mAddressTo.requestFocus()
+                return@setOnClickListener
+            }
+            if (woodPallets.isEmpty()){
+                mWoodPallets.error = "Number of Wood Pallets is require"
+                mWoodPallets.requestFocus()
+                return@setOnClickListener
+            }
+            if (plasticPallets.isEmpty()){
+                mPlasticPallets.error = "Number of Plastic Pallet is require"
+                mPlasticPallets.requestFocus()
+                return@setOnClickListener
+            }
             val mission = Mission(date, addressFrom, addressTo, woodPallets, plasticPallets)
             auth = Firebase.auth
             FirebaseAuth.getInstance()
