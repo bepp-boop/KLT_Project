@@ -95,14 +95,10 @@ class ScheduleItemAdapter(
             }else{
                 startSecond - stopSecond
             }
-            //Log.d("timer", "position: $position")
+
             arrayHour[position] = totalHours
             arrayMinutes[position] = totalMinutes
             arraySeconds[position] = totalSeconds
-//            Log.d("timer", "Loading time:${arraySeconds[0]}")
-//            Log.d("timer", "Driving time:${arraySeconds[1]}")
-//            Log.d("timer", "Unloading time:${arraySeconds[2]}")
-//            Log.d("timer", "Washing time:${arraySeconds[3]}")
 
             DataList.timeElapsed["hour"] = arrayHour
             DataList.timeElapsed["minutes"] = arrayMinutes
