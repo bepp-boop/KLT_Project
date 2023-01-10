@@ -48,13 +48,14 @@ class MissionNew : AppCompatActivity() {
             FirebaseAuth.getInstance()
             auth.currentUser.let { it ->
                 it?.let { it1 ->
-                    database.getReference("Users").child(it1.uid).child("missions_id").child(missionID).setValue(mission).addOnSuccessListener {
-                        binding.date.text.clear()
+                    database.getReference("Mission").child(missionID).setValue(mission).addOnSuccessListener {
                         binding.addressTo.text.clear()
                         binding.addressFrom.text.clear()
                         binding.palletsWood.text.clear()
                         binding.palletsPlastic.text.clear()
                         Toast.makeText(this, "Mission created!", Toast.LENGTH_SHORT).show()
+                        database.getReference("Users").child(it1.uid).child("missions_id").setValue(missionID).addOnSuccessListener {
+                        }
                     }.addOnFailureListener{
                         Toast.makeText(this, "Mission creation failed!", Toast.LENGTH_SHORT).show()
                     }
