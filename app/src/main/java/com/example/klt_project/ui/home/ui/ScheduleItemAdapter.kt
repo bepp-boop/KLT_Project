@@ -25,6 +25,9 @@ class ScheduleItemAdapter(
     private val context: ScheduleFragment,
     private val dataset: List<Schedule>
 ) : RecyclerView.Adapter<ScheduleItemAdapter.ScheduleItemViewHolder>(){
+    val arrayHour:Array<Int> = arrayOf(0,0,0,0)
+    val arrayMinutes:Array<Int> = arrayOf(0,0,0,0)
+    val arraySeconds:Array<Int> = arrayOf(0,0,0,0)
 
     class ScheduleItemViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val scheduleLayout: LinearLayout = view.findViewById(R.id.schedule_layout)
@@ -39,9 +42,7 @@ class ScheduleItemAdapter(
     @SuppressLint("ResourceType")
     override fun onBindViewHolder(holder: ScheduleItemAdapter.ScheduleItemViewHolder, position: Int) {
         lateinit var sentences:Array<String>
-        val arrayHour:Array<Int> = arrayOf()
-        val arrayMinutes:Array<Int> = arrayOf()
-        val arraySeconds:Array<Int> = arrayOf()
+
         var counter = 0
         val item = dataset[position]
 
@@ -98,10 +99,15 @@ class ScheduleItemAdapter(
             }else{
                 startSecond - stopSecond
             }
+            //Log.d("timer", "position: $position")
             arrayHour[position] = totalHours
             arrayMinutes[position] = totalMinutes
             arraySeconds[position] = totalSeconds
-            Log.d("timer", arraySeconds.toString())
+//            Log.d("timer", "Loading time:${arraySeconds[0]}")
+//            Log.d("timer", "Driving time:${arraySeconds[1]}")
+//            Log.d("timer", "Unloading time:${arraySeconds[2]}")
+//            Log.d("timer", "Washing time:${arraySeconds[3]}")
+
             DataList.timeElapsed["hour"] = arrayHour
             DataList.timeElapsed["minutes"] = arrayMinutes
             DataList.timeElapsed["seconds"] = arraySeconds

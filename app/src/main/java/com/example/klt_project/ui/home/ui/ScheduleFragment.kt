@@ -29,7 +29,8 @@ class ScheduleFragment: Fragment() {
 
     override fun setMenuVisibility(menuVisible: Boolean) {
         super.setMenuVisibility(menuVisible)
-        Log.d("timer", "${DataList.timeElapsed["hour"]}:${DataList.timeElapsed["minutes"]}:${DataList.timeElapsed["seconds"]}")
+        Log.d("timer", "${DataList.timeElapsed["hour"]?.asList()}:${DataList.timeElapsed["minutes"]?.asList()}:${DataList.timeElapsed["seconds"]?.asList()}")
+        //Log.d("timer", "${DataList.timeElapsed["hour"].toString()}:${DataList.timeElapsed["minutes"].toString()}:${DataList.timeElapsed["seconds"].toString()}")
     }
 
 }
