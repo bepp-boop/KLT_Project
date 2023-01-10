@@ -62,7 +62,6 @@ class MissionNew : AppCompatActivity() {
                     }
                 }
             }
-
         }
     }
 
