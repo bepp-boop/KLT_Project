@@ -1,4 +1,4 @@
-package com.example.klt_project.ui.home.ui
+package com.example.klt_project.ui.home.ui.ScheduleFragment
 
 import androidx.annotation.StringRes
 

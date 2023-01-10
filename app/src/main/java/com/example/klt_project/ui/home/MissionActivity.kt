@@ -29,6 +29,9 @@ class MissionActivity : AppCompatActivity() {
                 1->{
                     tab.text="Schedule"
                 }
+                2->{
+                    tab.text="Note"
+                }
             }
         }.attach()
 
