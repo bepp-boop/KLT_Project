@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.klt_project.DataList
 import com.example.klt_project.databinding.FragmentNoteBinding
 import com.google.android.material.textfield.TextInputLayout
 
@@ -22,7 +23,7 @@ class NoteFragment:Fragment(){
         binding.saveNote.setOnClickListener {
             val textInputLayout: TextInputLayout = binding.note.findViewById(com.example.klt_project.R.id.note)
             val text: Editable? = textInputLayout.editText!!.text
-
+            DataList.note = text.toString()
         }
         return binding.root
     }
