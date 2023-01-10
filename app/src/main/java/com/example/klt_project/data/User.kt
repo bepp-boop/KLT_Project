@@ -6,6 +6,5 @@ data class User(
     val email: String? = null,
     val password: String? = null,
     val missions_id: MutableList<Int>,
-    //val Mission bsID: List<IDs>? = emptyList()
 )
 

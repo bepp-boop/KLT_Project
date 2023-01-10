@@ -1,5 +1,6 @@
 package com.example.klt_project.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.widget.EditText
@@ -8,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.klt_project.R
 import com.example.klt_project.databinding.ActivityMissionNewBinding
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
@@ -20,6 +22,7 @@ class MissionNew : AppCompatActivity() {
         Firebase.database("https://klt-prototype-default-rtdb.europe-west1.firebasedatabase.app/")
     private lateinit var binding: ActivityMissionNewBinding
 
+    @SuppressLint("RestrictedApi", "ClickableViewAccessibility")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +37,11 @@ class MissionNew : AppCompatActivity() {
 
         val create = binding.create
         setContentView(binding.root)
+        val view = window.decorView
+        view.setOnTouchListener{v, event ->
+            hideKeyboard(v)
+            false
+        }
 
         create.setOnClickListener {
 
@@ -90,6 +98,7 @@ class MissionNew : AppCompatActivity() {
             }
 
         }
+
     }
 
     data class Mission(

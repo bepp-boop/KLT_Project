@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import com.example.klt_project.DataList
 import com.example.klt_project.DataList.userMission
 import com.example.klt_project.R
@@ -20,32 +22,8 @@ import kotlinx.coroutines.currentCoroutineContext
 import kotlin.coroutines.coroutineContext
 
 class MissionDatasource {
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val database =
-        Firebase.database("https://klt-prototype-default-rtdb.europe-west1.firebasedatabase.app/")
-    private val myRef = database.getReference("Mission")
 
     fun loadMissions(): List<Missions> {
-
-        Log.d("mission", "from missionDataSource: ${DataList.missionsID}")
-
-//        myRef.child("10")
-//            .addValueEventListener(object : ValueEventListener {
-//                @SuppressLint("SetTextI18n")
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//                    userMission.clear()
-//                    userMission["from"] = snapshot.child("place of dispatch").value as? String
-//                    userMission["to"] = snapshot.child("place of destinations").value as? String
-//                    //Log.d("mission", userMission["from"].toString())
-//                    //userMission["email"] = snapshot.child("email").value as? String
-//                    //DataList.missionsID = snapshot.child("missions_id").value as? ArrayList<Int>
-//
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//
-//                }
-//            })
 
         return listOf(
             Missions(

@@ -1,7 +1,6 @@
 package com.example.klt_project.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.klt_project.R
 import com.example.klt_project.ui.home.ui.ViewPagerAdapter
@@ -11,8 +10,6 @@ import kotlinx.android.synthetic.main.activity_mission.*
 
 
 class MissionActivity : AppCompatActivity() {
-   // private val database = Firebase.database("https://klt-prototype-default-rtdb.europe-west1.firebasedatabase.app/")
-   // private val myRef = database.getReference("Mission")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

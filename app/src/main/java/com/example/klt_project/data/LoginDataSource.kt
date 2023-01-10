@@ -14,8 +14,6 @@ import java.io.IOException
  */
 class LoginDataSource {
     private lateinit var auth: FirebaseAuth
-    private val database = Firebase.database("https://klt-prototype-default-rtdb.europe-west1.firebasedatabase.app/")
-    private val myRef = database.getReference("Users")
 
     fun login(username: String, password: String): Result<LoggedInUser>? {
         return try {
@@ -27,13 +25,6 @@ class LoginDataSource {
                 username
             )
             if (auth.currentUser != null) {
-                myRef.child(auth.uid.toString()).get().addOnSuccessListener {
-                    if(it.exists()) {
-                        DataList.missionsID!!.clear()
-                        DataList.missionsID = it.child("missions_id").value as? ArrayList<Int>
-                        Log.d("mission", "from loginDataSource: ${DataList.missionsID}")
-                    }
-                }
                 Result.Success(user)
             } else {
                 Result.Error(IOException("Error logging in"))

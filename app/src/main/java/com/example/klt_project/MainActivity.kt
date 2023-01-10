@@ -91,9 +91,6 @@ class MainActivity : AppCompatActivity() {
                 userData["firstName"] = snapshot.child("firstName").value as? String
                 userData["lastName"] = snapshot.child("lastName").value as? String
                 userData["email"] = snapshot.child("email").value as? String
-                missionsID = snapshot.child("missions_id").value as? ArrayList<Int>
-
-                Log.d("mission", "from Main: ${missionsID}")
 
                 val navView: NavigationView = binding.navView
                 val headView: View = navView.getHeaderView(0)
@@ -142,7 +139,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 object DataList{
-    var missionsID: ArrayList<Int>? = arrayListOf()
-    var userMission = hashMapOf<String?, String?>()
+    var missionsID: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0,0,0,0,0)
+    var userMission = hashMapOf<Any, Any>()
     var timeElapsed = hashMapOf<String, Array<Int>?>()
 }
