@@ -14,9 +14,6 @@ class AboutUsFragment : Fragment() {
 
     private var _binding: FragmentAboutUsBinding? = null
     var videoUrl = "https://kltlogistik.se/content/uploads/20/12/startv3.mp4"
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -33,10 +30,6 @@ class AboutUsFragment : Fragment() {
         val videoView: VideoView = binding.videoView
         val uri: Uri = Uri.parse(videoUrl)
         videoView.setVideoURI(uri)
-        //val mediaController = MediaController(context)
-        //mediaController.setAnchorView(videoView)
-        //mediaController.setMediaPlayer(videoView)
-        //videoView.setMediaController(mediaController)
         videoView.start()
 
         aboutUsViewModel.text.observe(viewLifecycleOwner) {
