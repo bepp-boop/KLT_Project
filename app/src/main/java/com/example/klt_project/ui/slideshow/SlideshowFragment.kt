@@ -7,16 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.klt_project.data.Report
 import com.example.klt_project.databinding.FragmentSlideshowBinding
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_slideshow.*
-import org.w3c.dom.Text
 
 class SlideshowFragment : Fragment() {
 
@@ -26,7 +21,10 @@ class SlideshowFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    @SuppressLint("SetTextI18n")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+    @SuppressLint("SetTextI18n", "RestrictedApi", "ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -73,13 +71,12 @@ class SlideshowFragment : Fragment() {
             unloadingText.setText(unloadingText.text.toString())
             washingText.setText(washingText.text.toString())
             showNote.setText(showNote.text.toString())
-            report.put("loading time",loadingText.text.toString())
-            report.put("driving time",drivingText.text.toString())
-            report.put("unLoading time",unloadingText.text.toString())
-            report.put("wash time",washingText.text.toString())
-            report.put("note",showNote.text.toString())
+            report["loading time"] = loadingText.text.toString()
+            report["driving time"] = drivingText.text.toString()
+            report["unLoading time"] = unloadingText.text.toString()
+            report["wash time"] = washingText.text.toString()
+            report["note"] = showNote.text.toString()
             database.getReference("Mission").child(10.toString()).updateChildren(report)
-            Log.d("Upload correct","yea")
         }
         return root
     }

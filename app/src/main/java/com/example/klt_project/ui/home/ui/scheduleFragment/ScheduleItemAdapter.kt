@@ -100,6 +100,7 @@ class ScheduleItemAdapter(
             arrayMinutes[position] = totalMinutes
             arraySeconds[position] = totalSeconds
 
+
             DataList.timeElapsed["hour"] = arrayHour
             DataList.timeElapsed["minutes"] = arrayMinutes
             DataList.timeElapsed["seconds"] = arraySeconds

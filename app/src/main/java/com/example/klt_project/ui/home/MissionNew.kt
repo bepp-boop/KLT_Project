@@ -37,6 +37,7 @@ class MissionNew : AppCompatActivity() {
 
         val create = binding.create
         setContentView(binding.root)
+
         val view = window.decorView
         view.setOnTouchListener{v, event ->
             hideKeyboard(v)

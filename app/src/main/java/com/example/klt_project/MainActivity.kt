@@ -17,25 +17,30 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.klt_project.DataList.missionsID
+import com.example.klt_project.data.Result
 import com.example.klt_project.databinding.ActivityMainBinding
 import com.example.klt_project.ui.home.MissionNew
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_schedule.*
 import kotlin.collections.set
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    //private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var auth: FirebaseAuth
     private val database = Firebase.database("https://klt-prototype-default-rtdb.europe-west1.firebasedatabase.app/")
     private val myRef = database.getReference("Users")
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
+        auth = Firebase.auth
+        FirebaseAuth.getInstance()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -46,6 +51,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             //this will be used to create a new mission. Ex: picking up empty pallets.
         }
+        auth.signInWithEmailAndPassword("test3@gmail.com","123456").addOnCompleteListener{
+            if(it.isCanceled ){
+                Toast.makeText(this, "Invalid user", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
+            }
+            getUserData(this.auth.currentUser?.uid.toString())
+            Log.d("user", it.isSuccessful.toString())
+        }
+
+
         val uid:String = this.auth.currentUser?.uid.toString()
         Log.d("firebase", uid)
         if(uid.isNotEmpty()){

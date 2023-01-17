@@ -1,5 +1,6 @@
 package com.example.klt_project.ui.home.ui.noteFragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.view.LayoutInflater
@@ -8,12 +9,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.klt_project.DataList
 import com.example.klt_project.databinding.FragmentNoteBinding
+import com.google.android.material.internal.ViewUtils
 import com.google.android.material.textfield.TextInputLayout
 
 
 class NoteFragment:Fragment(){
     private var _binding:FragmentNoteBinding? = null
     private val binding get() = _binding!!
+    @SuppressLint("RestrictedApi", "ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,5 +30,6 @@ class NoteFragment:Fragment(){
         }
         return binding.root
     }
+
 
 }
