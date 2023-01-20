@@ -23,7 +23,18 @@ import kotlinx.android.synthetic.main.fragment_schedule.view.*
 import kotlinx.android.synthetic.main.list_interaction.view.*
 import java.util.*
 import kotlin.properties.Delegates
-
+var LOADING_SECONDS:Long = 0
+var LOADING_MINUTES:Long = 0
+var LOADING_HOURS:Long = 0
+var UNLOADING_SECONDS:Long = 0
+var UNLOADING_MINUTES:Long = 0
+var UNLOADING_HOURS:Long = 0
+var DRIVING_SECONDS:Long = 0
+var DRIVING_MINUTES:Long = 0
+var DRIVING_HOURS:Long = 0
+var WASHING_SECONDS:Long = 0
+var WASHING_MINUTES:Long = 0
+var WASHING_HOURS:Long = 0
 
 class ScheduleItemAdapter(
     private val context: ScheduleFragment,
@@ -37,6 +48,7 @@ class ScheduleItemAdapter(
 
     private val timer = Timer()
     lateinit var dataHelper: DataHelper
+
 
     class ScheduleItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val scheduleLayout: LinearLayout = view.findViewById(R.id.schedule_layout)
@@ -57,6 +69,7 @@ class ScheduleItemAdapter(
         lateinit var sentences: Array<String>
         pos = position
         val item = dataset[position]
+
 
         sentences = context.resources.getStringArray(item.stringScheduleResourceId)
         holder.scheduleLayout.interaction.text = sentences[0]
@@ -135,7 +148,34 @@ class ScheduleItemAdapter(
                 stopTimer()
                 if (dataHelper.startTime() != null && dataHelper.stopTime() != null) {
                     val time = Date().time - calcRestartTime().time
-                    DataList.saveTime[position] = timeStringFromLong(time)
+                    if(position == 0){
+                        LOADING_SECONDS += getSeconds(time)
+                        LOADING_MINUTES += getMinutes(time)
+                        LOADING_HOURS += getHours(time)
+                        DataList.saveTime[position] = setTime(LOADING_HOURS, LOADING_MINUTES, LOADING_SECONDS)
+                        //Log.d("loadingTime", "loading time" + makeTimeString(LOADING_HOURS, LOADING_MINUTES, LOADING_SECONDS))
+                    }
+                    if(position == 1){
+                        DRIVING_SECONDS += getSeconds(time)
+                        DRIVING_MINUTES += getMinutes(time)
+                        DRIVING_HOURS += getHours(time)
+                        DataList.saveTime[position] = setTime(DRIVING_HOURS, DRIVING_MINUTES, DRIVING_SECONDS)
+                        //Log.d("loadingTime", "unloading time "+ makeTimeString(UNLOADING_HOURS, UNLOADING_MINUTES, UNLOADING_SECONDS))
+                    }
+                    if(position == 2){
+                        UNLOADING_SECONDS += getSeconds(time)
+                        UNLOADING_MINUTES += getMinutes(time)
+                        UNLOADING_HOURS += getHours(time)
+                        DataList.saveTime[position] = setTime(UNLOADING_HOURS, UNLOADING_MINUTES, UNLOADING_SECONDS)
+                        //Log.d("loadingTime", "unloading time "+ makeTimeString(UNLOADING_HOURS, UNLOADING_MINUTES, UNLOADING_SECONDS))
+                    }
+                    if(position == 3){
+                        WASHING_SECONDS += getSeconds(time)
+                        WASHING_MINUTES += getMinutes(time)
+                        WASHING_HOURS += getHours(time)
+                        DataList.saveTime[position] = setTime(WASHING_HOURS, WASHING_MINUTES, WASHING_SECONDS)
+                        //Log.d("loadingTime", "unloading time "+ makeTimeString(UNLOADING_HOURS, UNLOADING_MINUTES, UNLOADING_SECONDS))
+                    }
                     resetAction()
                 }
             }
@@ -193,11 +233,39 @@ class ScheduleItemAdapter(
         slideshowViewModel.pressed.removeObservers(this.context.viewLifecycleOwner)
     }
 
-    private fun timeStringFromLong(ms: Long): String {
+   /* private fun timeStringFromLong(ms: Long): String {
         val seconds = (ms / 1000) % 60
         val minutes = (ms / (1000 * 60) % 60)
         val hours = (ms / (1000 * 60 * 60) % 24)
         return makeTimeString(hours, minutes, seconds)
+    }*/
+    private fun getSeconds(ms: Long): Long{
+        val seconds = (ms / 1000) % 60
+        return seconds
+    }
+    private fun getMinutes(ms: Long): Long{
+        val minutes = (ms / (1000 * 60) % 60)
+        return minutes
+    }
+    private fun getHours(ms: Long): Long{
+        val hours = (ms / (1000 * 60 * 60) % 24)
+        return hours
+    }
+    private fun setTime(setHours: Long,setMinutes: Long, setSeconds: Long):String{
+        var _setHours = setHours
+        var _setMinutes = setMinutes
+        var _setSeconds = setSeconds
+
+        if(_setSeconds > 60){
+            _setMinutes += _setSeconds/60.toInt()
+            _setSeconds -= (_setSeconds/60.toInt()) * 60
+            Log.d("LoadingTime", "seconds$_setSeconds")
+        }
+        if(_setMinutes > 60){
+            _setHours += _setMinutes/60.toInt()
+            _setMinutes -= (_setMinutes/60.toInt()) * 60
+        }
+        return makeTimeString(_setHours,_setMinutes,_setSeconds)
     }
 
     private fun makeTimeString(hours: Long, minutes: Long, seconds: Long): String {
