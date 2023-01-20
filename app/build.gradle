@@ -6,12 +6,21 @@ plugins {
 
 android {
     namespace 'com.example.klt_project'
-    compileSdk 32
+    compileSdk 33
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            def versionName = variant.versionName
+            def versionCode = 2
+            def newName = "KLT_v${versionName}_b${versionCode}.apk"
+            outputFileName = new File(newName)
+        }
+    }
 
     defaultConfig {
         applicationId "com.example.klt_project"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -19,6 +28,9 @@ android {
     }
 
     buildTypes {
+        debug{
+            archivesBaseName = "KLT_test"
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -47,22 +59,22 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation 'org.greenrobot:eventbus:3.2.0'
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-    implementation 'com.google.firebase:firebase-auth-ktx:21.0.2'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
     implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
     implementation 'com.google.firebase:firebase-database:20.1.0'
-    implementation 'com.google.firebase:firebase-common-ktx:20.1.0'
+    implementation 'com.google.firebase:firebase-common-ktx:20.2.0'
     testImplementation 'junit:junit:4.13.2'
-    implementation 'com.google.code.gson:gson:2.8.8'
+    implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
 }

@@ -6,7 +6,7 @@ import com.example.klt_project.R
 import com.example.klt_project.ui.home.ui.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_mission.*
-
+import kotlinx.android.synthetic.main.list_interaction.*
 
 
 class MissionActivity : AppCompatActivity() {

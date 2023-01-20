@@ -22,6 +22,7 @@ import com.example.klt_project.databinding.ActivityMainBinding
 import com.example.klt_project.ui.home.MissionNew
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
@@ -52,10 +53,11 @@ class MainActivity : AppCompatActivity() {
             //this will be used to create a new mission. Ex: picking up empty pallets.
         }
         auth.signInWithEmailAndPassword("test3@gmail.com","123456").addOnCompleteListener{
+
             if(it.isCanceled ){
                 Toast.makeText(this, "Invalid user", Toast.LENGTH_SHORT).show()
             }else{
-                Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Welcome KLT", Toast.LENGTH_SHORT).show()
             }
             getUserData(this.auth.currentUser?.uid.toString())
             Log.d("user", it.isSuccessful.toString())
@@ -155,8 +157,15 @@ class MainActivity : AppCompatActivity() {
 }
 
 object DataList{
+
+    var saveTime: ArrayList<String> = arrayListOf("Loading time", "Driving time", "Unloading time", "Washing time")
+
     var missionsID: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0,0,0,0,0)
-    var userMission = hashMapOf<Any, Any>()
+
     var timeElapsed = hashMapOf<String, Array<Int>?>()
+
+    var buttonArray: ArrayList<Int> = arrayListOf(0,0,0,0)
+
     var note:String = ""
+
 }

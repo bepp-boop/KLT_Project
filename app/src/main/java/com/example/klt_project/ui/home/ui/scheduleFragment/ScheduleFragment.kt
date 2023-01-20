@@ -1,12 +1,10 @@
 package com.example.klt_project.ui.home.ui.scheduleFragment
 
 import android.os.Bundle
-import android.provider.VoicemailContract.Voicemails.RESTORED
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.persistableBundleOf
 import androidx.fragment.app.Fragment
 import com.example.klt_project.DataList
 import com.example.klt_project.databinding.FragmentScheduleBinding
@@ -32,7 +30,6 @@ class ScheduleFragment: Fragment() {
     override fun setMenuVisibility(menuVisible: Boolean) {
         super.setMenuVisibility(menuVisible)
         Log.d("timer", "${DataList.timeElapsed["hour"]?.asList()}:${DataList.timeElapsed["minutes"]?.asList()}:${DataList.timeElapsed["seconds"]?.asList()}")
-        //Log.d("timer", "${DataList.timeElapsed["hour"].toString()}:${DataList.timeElapsed["minutes"].toString()}:${DataList.timeElapsed["seconds"].toString()}")
     }
 
 }

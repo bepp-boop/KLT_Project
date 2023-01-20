@@ -66,4 +66,14 @@
     <string name="kontakt_info">
 Svetsarevägen 1, 291 36 Kristianstad \n\n Växel: +46(0)44 781 90 00 \n\n E-post: info@kjellssons.com \n\n Öppettider: 07.00–16.00 vardagar
  \n\n © Kjellssons Logistik &amp; Transport AB 2018 - Org. 556560-9244</string>
+    <string name="loading">Loading</string>
+    <string name="unloading">Unloading</string>
+    <string name="driving">Driving</string>
+    <string name="washing">Washing</string>
+    <string name="notes">Notes</string>
+    <string name="send">Send</string>
+    <string name="loading_time">Loading time</string>
+    <string name="driving_time">Driving time</string>
+    <string name="washing_time">Washing time</string>
+    <string name="unloading_time">Unloading time</string>
 </resources>
